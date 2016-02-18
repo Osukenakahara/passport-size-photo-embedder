@@ -7,3 +7,6 @@ Ask your friends / family to take a face photo and crop it to the correct ratio.
 ### Example
 passport_photo.sh face_photo.jpg
 
+### License
+This script is released under Apache License 2.0, meaning you can use and modify it as you wish.
+
