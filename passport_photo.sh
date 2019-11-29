@@ -35,14 +35,14 @@ photo_height=$(bc -l <<< "scale=3; $photo_height / 25.4")
 photo_width=$(printf %.0f $(bc -l <<< "$photo_width * $ppi"))
 photo_height=$(printf %.0f $(bc -l <<< "$photo_height * $ppi"))
 canvas_width=$[$print_width * $ppi / $num_photo]
-canvas_height=$[$print_height * $ppi] 
+canvas_height=$[$print_height * $ppi]
 
 # Embed the photo onto a white canvas.
 canvas_name="passport_size_photo.$format"
 resized_name="${photo_name%.*}_resized.${format}"
 convert -size "${canvas_width}x${canvas_height}" canvas:white $canvas_name
 convert $photo_name -resize "${photo_width}x${photo_height}" $resized_name
-composite -gravity center $resized_name $canvas_name $canvas_name
+composite -colorspace sRGB -gravity center $resized_name $canvas_name $canvas_name
 convert $canvas_name $canvas_name +append $canvas_name
 
 # Remove the resized_photo.
